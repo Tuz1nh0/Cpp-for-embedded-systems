@@ -25,64 +25,31 @@ static bool isLeapYear(int year) {
 }
 
 void Calendar::advance() {
+  int lastday;
 
   if(m == 2) {
     if(isLeapYear(y)) {
-      if(d < 29) {
-        d++;
-      }
-      else {
-        d = 1;
-        m++;
-      }
-    }
-    else {
-      if(d < 28) {
-        d++;
-      }
-      else {
-        d = 1;
-        m++;
-      }
+      lastday = 29;
+    } else {
+      lastday = 28;
     }
   }
-  else if(m < 8 && m%2 == 0) {
-    if(d < 30) {
-      d++;
-    }
-    else {
-      d = 1;
-      m++;
-    }
-  }
-  else if(m > 8 && m%2 != 0) {
-    if(d < 31) {
-      d++;
-    }
-    else {
-      d = 1;
-      m++;
-    }
-  }
-  else if(m > 7 && m%2 == 0) {
-    if(d < 31) {
-      d++;
-    }
-    else {
-      d = 1;
-      m++;
-      if(m > 12) {
-        y++;
-      }
-    }
+  else if(m == 4 || m == 6 || m == 9 || m == 11) {
+    lastday = 30;
   }
   else {
-    if (d < 30) {
-      d++;
-    }
-    else {
-      d = 1;
-      m++;
+    lastday = 31;
+  }
+  
+  if(d < lastday) {
+    d++;
+  }
+  else {
+    d = 1;
+    m++;
+    if(m > 12) {
+      m = 1;
+      y++;
     }
   }
 }

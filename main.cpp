@@ -11,10 +11,10 @@ int main() {
   while(opt != 0) {
     cout << "\n1 - Set date\n";
     cout << "2 - Set time\n";
-    cout << "3 - Read date\n" << endl;
-    cout << "4 - Read time\n" << endl;
-    cout << "5 - Advance\n" << endl;
-    cout << "0 - Exit\n" << endl;
+    cout << "3 - Read date\n";
+    cout << "4 - Read time\n";
+    cout << "5 - Advance\n";
+    cout << "0 - Exit\n";
     cout << "Choose an option: ";
     cin >> opt;
     cin.ignore();
@@ -41,7 +41,12 @@ int main() {
         cout << "Time: " << hour << ":" << minute << ":" << second << " " << (PM ? "PM" : "AM") << endl;
         break;
       case 5:
-        cc.advance();
+        int steps;
+        cout << "How many steps? ";
+        cin >> steps;
+        for(int i = 0; i < steps; i++) {
+          cc.advance();
+        }
         break;
       case 0:
         cout << "Exiting program\n";
