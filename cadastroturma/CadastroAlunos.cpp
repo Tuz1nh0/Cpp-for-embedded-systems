@@ -1,13 +1,13 @@
 #include <iostream>
 #include <string>
 #include "Aluno.h"
-#include "Cadastro.h"
+#include "CadastroAlunos.h"
 
 using namespace std;
 
-bool Cadastro::verificaMatricula(Aluno cadastro[], int qtd, int matricula) {
+bool CadastroAlunos::verificaMatricula(Aluno aluno[], int qtd, int matricula) {
   for(int i = 0; i < qtd; i++) {
-    if(cadastro[i].getMatricula() == matricula) {
+    if(aluno[i].getMatricula() == matricula) {
       return true;
     }
   }
@@ -15,7 +15,7 @@ bool Cadastro::verificaMatricula(Aluno cadastro[], int qtd, int matricula) {
   return false;
 }
 
-void Cadastro::cadastrarAluno() {
+void CadastroAlunos::cadastrarAluno() {
   if(qtdAlunos >= TURMA) {
     cout << "Turma cheia!\n";
     return;
@@ -36,7 +36,7 @@ void Cadastro::cadastrarAluno() {
   cout << "Digite a matrícula: ";
   cin >> matricula;
 
-  if(verificaMatricula(cadastro, qtdAlunos, matricula)) {
+  if(verificaMatricula(aluno, qtdAlunos, matricula)) {
     cout << "Matricula ja cadastrada!\n";
     cin.ignore();
     return;
@@ -48,10 +48,10 @@ void Cadastro::cadastrarAluno() {
   cout << "Digite a nota 2: ";
   cin >> nota2;
 
-  cadastro[qtdAlunos].setNome(nome);
-  cadastro[qtdAlunos].setCurso(curso);
-  cadastro[qtdAlunos].setMatricula(matricula);
-  cadastro[qtdAlunos].setNotas(nota1, nota2);
+  aluno[qtdAlunos].setNome(nome);
+  aluno[qtdAlunos].setCurso(curso);
+  aluno[qtdAlunos].setMatricula(matricula);
+  aluno[qtdAlunos].setNotas(nota1, nota2);
 
   cout << "Aluno(a) cadastrado!\n";
   
@@ -60,7 +60,7 @@ void Cadastro::cadastrarAluno() {
   cin.ignore();
 }
 
-void Cadastro::consultarAluno() {
+void CadastroAlunos::consultarAluno() {
   bool found = false;
   
   string nome;
@@ -68,12 +68,12 @@ void Cadastro::consultarAluno() {
   cout << "Digite o nome do(a) aluno(a) a ser consultado: ";
   getline(cin, nome);
   for(int i = 0; i < qtdAlunos; i++){
-    if(cadastro[i].getNome() == nome) {
-      cout << "Curso: " << cadastro[i].getCurso() << endl;
-      cout << "Matrícula: " << cadastro[i].getMatricula() << endl;
-      cout << "Nota da P1: " << cadastro[i].getNota1() << endl;
-      cout << "Nota da P2: " << cadastro[i].getNota2() << endl;
-      cout << "Média final: " << cadastro[i].calculaMedia() << endl;
+    if(aluno[i].getNome() == nome) {
+      cout << "Curso: " << aluno[i].getCurso() << endl;
+      cout << "Matrícula: " << aluno[i].getMatricula() << endl;
+      cout << "Nota da P1: " << aluno[i].getNota1() << endl;
+      cout << "Nota da P2: " << aluno[i].getNota2() << endl;
+      cout << "Média final: " << aluno[i].calculaMedia() << endl;
 
       found = true;
       break;
@@ -85,24 +85,51 @@ void Cadastro::consultarAluno() {
   }
 }
 
-void Cadastro::listarAlunos() {
+void CadastroAlunos::listarAlunos() {
   for (int i = 0; i < qtdAlunos; i++) {
     cout << "---------------------" << endl;
-    cout << "Aluno(a): " << cadastro[i].getNome() << endl;
-    cout << "Curso: " << cadastro[i].getCurso() << endl;
-    cout << "Matrícula: " << cadastro[i].getMatricula() << endl;
-    cout << "Nota 1: " << cadastro[i].getNota1() << endl;
-    cout << "Nota 2: " << cadastro[i].getNota2() << endl;
-    cout << "Média final: " << cadastro[i].calculaMedia() << endl;
+    cout << "Aluno(a): " << aluno[i].getNome() << endl;
+    cout << "Curso: " << aluno[i].getCurso() << endl;
+    cout << "Matrícula: " << aluno[i].getMatricula() << endl;
+    cout << "Nota 1: " << aluno[i].getNota1() << endl;
+    cout << "Nota 2: " << aluno[i].getNota2() << endl;
+    cout << "Média final: " << aluno[i].calculaMedia() << endl;
     cout << "\n";
   }
 }
 
-void Cadastro::excluirAluno() {
-  //IMPLEMENTAR
+void CadastroAlunos::excluirAluno() {
+  bool person = false; 
+
+  int index = -1;
+
+  string nome;
+
+  cout << "Digite o nome do(a) aluno(a) a ser excluído";
+  getline(cin, nome);
+
+  for(int i = 0; i < qtdAlunos; i++) {
+    if(aluno[i].getNome() == nome) {
+      index = i;
+      break;
+    }
+  }
+
+  if(index == -1) {
+    cout << "Aluno não encontrado!\n";
+    return;
+  }
+
+  for (int i = index; i < (qtdAlunos-1); i++) {
+    aluno[i] = aluno[i+1];
+  }
+
+  qtdAlunos--;
+
+  cout << "Aluno excluído com sucesso!\n";
 }
 
-void Cadastro::alterarAluno() {
+void CadastroAlunos::alterarAluno() {
   bool person = false; 
 
   int index;
@@ -117,7 +144,7 @@ void Cadastro::alterarAluno() {
   getline(cin, nome);
   
   for(int i = 0; i < qtdAlunos; i++) {
-    if(cadastro[i].getNome() == nome) {
+    if(aluno[i].getNome() == nome) {
       index = i;
       person = true;
       break;
@@ -143,13 +170,13 @@ void Cadastro::alterarAluno() {
       case 1:
         cout << "Digite o nome a ser alterado: \n";
         getline(cin, nome);
-        cadastro[index].setNome(nome);
+        aluno[index].setNome(nome);
         cout << "Nome alterado\n";
         break;
       case 2:
         cout << "Digite o curso a ser alterado: \n";
         getline(cin, curso);
-        cadastro[index].setCurso(curso);
+        aluno[index].setCurso(curso);
         cout << "Curso alterado\n";
         break;
       case 3:
@@ -158,7 +185,7 @@ void Cadastro::alterarAluno() {
         cout << "Nota 1 alterada\n";
         cin >> nota2;
         cout << "Nota 2 alterada\n";
-        cadastro[index].setNotas(nota1, nota2);
+        aluno[index].setNotas(nota1, nota2);
         break;
       case 0:
         break;

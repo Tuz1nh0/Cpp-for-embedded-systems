@@ -18,7 +18,7 @@ class Aluno {
   public:
     void setNome(string newNome);
     void setCurso(string newCurso);
-    void setMatricula(int newMatrucula);
+    void setMatricula(int newMatricula);
     void setNotas(float newnNota1, float newNota2);
     string getNome();
     string getCurso();
@@ -28,6 +28,6 @@ class Aluno {
     float calculaMedia();
 };
 
-Aluno cadastro[TURMA];
+Aluno aluno[TURMA];
 
 #endif

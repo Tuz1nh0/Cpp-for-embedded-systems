@@ -1,14 +1,14 @@
-#ifndef CADASTRO_H
-#define CADASTRO_H
+#ifndef CADASTRO_ALUNOS_H
+#define CADASTRO_ALUNOS_H
 
 #include <iostream>
 #include "Aluno.h"
 
-class Cadastro {
+class CadastroAlunos {
   private:
     int qtdAlunos = 0;
   public:
-    bool verificaMatricula(Aluno cadastro[], int qtd, int matricula); 
+    bool verificaMatricula(Aluno aluno[], int qtd, int matricula);
     void cadastrarAluno();
     void consultarAluno();
     void listarAlunos();
@@ -16,6 +16,6 @@ class Cadastro {
     void alterarAluno();
 };
 
-Cadastro cagr;
+CadastroAlunos cadastroalunos;
 
 #endif
