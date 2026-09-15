@@ -1,9 +1,12 @@
 #include <iostream>
 #include <string>
-#include "Professor.h"
 #include "CadastroProfessores.h"
 
 using namespace std;
+
+string nome;
+int day, month, year;
+int matricula;
 
 bool CadastroProfessores::verificaMatricula(Professor prof[], int qtd, int matricula) {
   for(int i = 0; i < qtd; i++) {
@@ -17,29 +20,30 @@ bool CadastroProfessores::verificaMatricula(Professor prof[], int qtd, int matri
 
 void CadastroProfessores::cadastrarProfessor() {
   if(qtdProfessores >= CORPO_DOCENTE) {
-    cout << "None\n";
+    cout << "None" << endl;
     return;
   }
 
-  string nome;
-  int matricula;
-
   cout << "Digite o nome do(a) professor(a): ";
   getline(cin, nome);
+
+  cout << "Digite a data de nascimento do(a) professor(a): ";
+  cin >> day >> month >> year;
 
   cout << "Digite a matrícula: ";
   cin >> matricula;
 
   if(verificaMatricula(prof, qtdProfessores, matricula)) {
-    cout << "Matricula ja cadastrada!\n";
+    cout << "Matricula ja cadastrada!" << endl;
     cin.ignore();
     return;
   }
 
   prof[qtdProfessores].setNome(nome);
+  prof[qtdProfessores].setDataNascimento(day, month, year);
   prof[qtdProfessores].setMatricula(matricula);
 
-  cout << "Professor(a) cadastrado!\n";
+  cout << "Professor(a) cadastrado!" << endl;
   
   qtdProfessores++;
 
@@ -55,6 +59,7 @@ void CadastroProfessores::consultarProfessor() {
   getline(cin, nome);
   for(int i = 0; i < qtdProfessores; i++){
     if(prof[i].getNome() == nome) {
+      cout << "Data de nascimento: " << prof[i].getDataNascimento(day, month, year) << endl;
       cout << "Matrícula: " << prof[i].getMatricula() << endl;
 
       found = true;
@@ -62,7 +67,7 @@ void CadastroProfessores::consultarProfessor() {
     }
 
     if(!found) {
-      cout << "Nome inválido!\n";
+      cout << "Nome inválido!" << endl;
     }
   }
 }
@@ -70,6 +75,7 @@ void CadastroProfessores::listarProfessor() {
   for (int i = 0; i < qtdProfessores; i++) {
     cout << "---------------------" << endl;
     cout << "Professor(a): " << prof[i].getNome() << endl;
+    cout << "Data de nascimento: " << prof[i].getDataNascimento(day, month, year) << endl;
     cout << "Matrícula: " << prof[i].getMatricula() << endl;
     cout << "\n";
   }
@@ -93,7 +99,7 @@ void CadastroProfessores::excluirProfessor() {
   }
 
   if(index == -1) {
-    cout << "Professor não encontrado!\n";
+    cout << "Professor não encontrado!" << endl;
     return;
   }
 
@@ -103,7 +109,7 @@ void CadastroProfessores::excluirProfessor() {
 
   qtdProfessores--;
 
-  cout << "Professor excluído com sucesso!\n";
+  cout << "Professor excluído com sucesso!" << endl;
 }
 
 void CadastroProfessores::alterarProfessor() {
@@ -113,6 +119,7 @@ void CadastroProfessores::alterarProfessor() {
   int opcao_param = -1;
 
   string nome;
+  string data;
 
   cout << "Digite o nome do(a) professor(a) a ser consultado: ";
   getline(cin, nome);
@@ -126,29 +133,36 @@ void CadastroProfessores::alterarProfessor() {
   }
 
   if(!person) {
-    cout << "Nome invalido!\n";
+    cout << "Nome invalido!" << endl;
     return;
   }
       
   while(opcao_param != 0) {
-    cout << "Digite o parâmetro a ser alterado: \n";
-    cout << "1 - Alterar nome\n";
-    cout << "0 - Sair\n";
+    cout << "Digite o parâmetro a ser alterado: " << endl;
+    cout << "1 - Alterar nome" << endl;
+    cout << "2 - Alterar data de nascimento" << endl;
+    cout << "0 - Sair" << endl;
     
     cin >> opcao_param;
     cin.ignore();
 
     switch(opcao_param) {
       case 1:
-        cout << "Digite o nome a ser alterado: \n";
+        cout << "Digite o nome a ser alterado: " << endl;
         getline(cin, nome);
         prof[index].setNome(nome);
-        cout << "Nome alterado\n";
+        cout << "Nome alterado" << endl;
+        break;
+      case 2:
+        cout << "Digite a datas de nascimento a ser alterada: ";
+        cin >> day >> month >> year;
+        prof[index].setDataNascimento(day, month, year);
+        cout << "Data de nascimento alterada" << endl;
         break;
       case 0:
         break;
       default:
-        cout << "Opção invalida!\n";
+        cout << "Opção invalida!" << endl;
         break;
     }  
   }

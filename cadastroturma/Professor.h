@@ -3,19 +3,17 @@
 
 #include <iostream>
 #include <string>
+#include "Pessoa.h"
 
 #define CORPO_DOCENTE 10
 
 using namespace std;
 
-class Professor {
+class Professor : public Pessoa {
   private:
-    string nome;
     int matricula;
   public:
-    void setNome(string newNome);
     void setMatricula(int newMatricula);
-    string getNome();
     int getMatricula();
 };
 

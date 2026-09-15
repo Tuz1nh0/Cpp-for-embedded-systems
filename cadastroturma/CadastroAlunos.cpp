@@ -1,9 +1,16 @@
 #include <iostream>
 #include <string>
-#include "Aluno.h"
 #include "CadastroAlunos.h"
+#include "clockcalendar/ClockCalendar.h"
 
 using namespace std;
+
+string nome;
+int day, month, year;
+string curso;
+int matricula;
+float nota1;
+float nota2;
 
 bool CadastroAlunos::verificaMatricula(Aluno aluno[], int qtd, int matricula) {
   for(int i = 0; i < qtd; i++) {
@@ -17,18 +24,15 @@ bool CadastroAlunos::verificaMatricula(Aluno aluno[], int qtd, int matricula) {
 
 void CadastroAlunos::cadastrarAluno() {
   if(qtdAlunos >= TURMA) {
-    cout << "Turma cheia!\n";
+    cout << "Turma cheia!" << endl;
     return;
   }
 
-  string nome;
-  string curso;
-  int matricula;
-  float nota1;
-  float nota2;
-
   cout << "Digite o nome do(a) aluno(a): ";
   getline(cin, nome);
+
+  cout << "Digite a data de nascimento do(a) aluno(a) (dd mm yyyy): ";
+  cin >> day >> month >> year;
 
   cout << "Digite o nome do curso: ";
   getline(cin, curso);
@@ -37,7 +41,7 @@ void CadastroAlunos::cadastrarAluno() {
   cin >> matricula;
 
   if(verificaMatricula(aluno, qtdAlunos, matricula)) {
-    cout << "Matricula ja cadastrada!\n";
+    cout << "Matricula ja cadastrada!" << endl;
     cin.ignore();
     return;
   }
@@ -49,11 +53,12 @@ void CadastroAlunos::cadastrarAluno() {
   cin >> nota2;
 
   aluno[qtdAlunos].setNome(nome);
+  aluno[qtdAlunos].setDataNascimento(day, month, year);
   aluno[qtdAlunos].setCurso(curso);
   aluno[qtdAlunos].setMatricula(matricula);
   aluno[qtdAlunos].setNotas(nota1, nota2);
 
-  cout << "Aluno(a) cadastrado!\n";
+  cout << "Aluno(a) cadastrado!" << endl;
   
   qtdAlunos++;
 
@@ -62,13 +67,12 @@ void CadastroAlunos::cadastrarAluno() {
 
 void CadastroAlunos::consultarAluno() {
   bool found = false;
-  
-  string nome;
 
   cout << "Digite o nome do(a) aluno(a) a ser consultado: ";
   getline(cin, nome);
   for(int i = 0; i < qtdAlunos; i++){
     if(aluno[i].getNome() == nome) {
+      cout << "Data de nascimento: " << aluno[i].getDataNascimento(day, month, year) << endl;
       cout << "Curso: " << aluno[i].getCurso() << endl;
       cout << "Matrícula: " << aluno[i].getMatricula() << endl;
       cout << "Nota da P1: " << aluno[i].getNota1() << endl;
@@ -89,6 +93,7 @@ void CadastroAlunos::listarAlunos() {
   for (int i = 0; i < qtdAlunos; i++) {
     cout << "---------------------" << endl;
     cout << "Aluno(a): " << aluno[i].getNome() << endl;
+    cout << "Data de nascimento: " << aluno[i].getDataNascimento(day, month, year) << endl;
     cout << "Curso: " << aluno[i].getCurso() << endl;
     cout << "Matrícula: " << aluno[i].getMatricula() << endl;
     cout << "Nota 1: " << aluno[i].getNota1() << endl;
@@ -103,8 +108,6 @@ void CadastroAlunos::excluirAluno() {
 
   int index = -1;
 
-  string nome;
-
   cout << "Digite o nome do(a) aluno(a) a ser excluído";
   getline(cin, nome);
 
@@ -116,7 +119,7 @@ void CadastroAlunos::excluirAluno() {
   }
 
   if(index == -1) {
-    cout << "Aluno não encontrado!\n";
+    cout << "Aluno não encontrado!" << endl;
     return;
   }
 
@@ -126,7 +129,7 @@ void CadastroAlunos::excluirAluno() {
 
   qtdAlunos--;
 
-  cout << "Aluno excluído com sucesso!\n";
+  cout << "Aluno excluído com sucesso!" << endl;
 }
 
 void CadastroAlunos::alterarAluno() {
@@ -134,11 +137,6 @@ void CadastroAlunos::alterarAluno() {
 
   int index;
   int opcao_param = -1;
-
-  string nome;
-  string curso;
-  float nota1;
-  float nota2;
 
   cout << "Digite o nome do(a) aluno(a) a ser consultado: ";
   getline(cin, nome);
@@ -152,45 +150,52 @@ void CadastroAlunos::alterarAluno() {
   }
 
   if(!person) {
-    cout << "Nome invalido!\n";
+    cout << "Nome invalido!" << endl;
     return;
   }
       
   while(opcao_param != 0) {
-    cout << "Digite o parâmetro a ser alterado: \n";
-    cout << "1 - Alterar nome\n";
-    cout << "2 - Alterar curso\n";
-    cout << "3 - Alterar notas\n";
-    cout << "0 - Sair\n";
+    cout << "Digite o parâmetro a ser alterado: " << endl;
+    cout << "1 - Alterar nome" << endl;
+    cout << "2 - Alterar data de nascimento" << endl;
+    cout << "3 - Alterar curso" << endl;
+    cout << "4 - Alterar notas" << endl;
+    cout << "0 - Sair" << endl;
     
     cin >> opcao_param;
     cin.ignore();
 
     switch(opcao_param) {
       case 1:
-        cout << "Digite o nome a ser alterado: \n";
+        cout << "Digite o nome a ser alterado: " << endl;
         getline(cin, nome);
         aluno[index].setNome(nome);
-        cout << "Nome alterado\n";
+        cout << "Nome alterado" << endl;
         break;
       case 2:
-        cout << "Digite o curso a ser alterado: \n";
-        getline(cin, curso);
-        aluno[index].setCurso(curso);
-        cout << "Curso alterado\n";
+        cout << "Digite a datas de nascimento a ser alterada: ";
+        cin >> day >> month >> year;
+        aluno[index].setDataNascimento(day, month, year);
+        cout << "Data de nascimento alterada" << endl;
         break;
       case 3:
-        cout << "Digite as notas a serem alteradas: \n";
+        cout << "Digite o curso a ser alterado: " << endl;
+        getline(cin, curso);
+        aluno[index].setCurso(curso);
+        cout << "Curso alterado" << endl;
+        break;
+      case 4:
+        cout << "Digite as notas a serem alteradas: " << endl;
         cin >> nota1;
-        cout << "Nota 1 alterada\n";
+        cout << "Nota 1 alterada" << endl;
         cin >> nota2;
-        cout << "Nota 2 alterada\n";
+        cout << "Nota 2 alterada" << endl;
         aluno[index].setNotas(nota1, nota2);
         break;
       case 0:
         break;
       default:
-        cout << "Opção invalida!\n";
+        cout << "Opção invalida!" << endl;
         break;
     }  
   }

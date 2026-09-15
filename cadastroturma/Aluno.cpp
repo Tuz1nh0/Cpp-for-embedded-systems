@@ -4,10 +4,6 @@
 
 using namespace std;
 
-void Aluno::setNome(string newNome) {
-  nome = newNome;
-}
-
 void Aluno::setCurso(string newCurso) {
   curso = newCurso;
 }
@@ -19,10 +15,6 @@ void Aluno::setMatricula(int newMatricula) {
 void Aluno::setNotas(float newNota1, float newNota2) {
   nota1 = newNota1;
   nota2 = newNota2;
-}
-
-string Aluno::getNome() {
-  return nome;
 }
 
 string Aluno::getCurso() {

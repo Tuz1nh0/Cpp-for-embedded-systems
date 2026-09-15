@@ -1,7 +1,8 @@
 #include <iostream>
 #include <string>
 #include "cadastroturma/Aluno.h"
-#include "cadastroturma/Cadastro.h"
+#include "cadastroturma/CadastroAlunos.h"
+#include "cadastroturma/CadastroProfessores.h"
 #include "clockcalendar/ClockCalendar.h"
 
 using namespace std;
@@ -33,34 +34,34 @@ int main() {
         //IMPLEMENTAR LOGIN COM NOME E MATRÍCULA
         break;
       case 2:
-        cadastro.cadastrarAluno();
+        cadastroalunos.cadastrarAluno();
         break;
       case 3:
-        cadastro.consultarAluno();
+        cadastroalunos.consultarAluno();
         break;
       case 4:
-        cadastro.listarAlunos();
+        cadastroalunos.listarAlunos();
         break;
       case 5:
-        cadastro.excluirAluno();
+        cadastroalunos.excluirAluno();
         break;
       case 6:
-        cadastro.alterarAluno();
+        cadastroalunos.alterarAluno();
         break;
       case 7:
-        cadastro.cadastrarProfessor();
+        cadastroprofessores.cadastrarProfessor();
         break;
       case 8:
-        cadastro.consultarProfessor();
+        cadastroprofessores.consultarProfessor();
         break;
       case 9:
-        cadastro.listarProfessor();
+        cadastroprofessores.listarProfessor();
         break;
       case 10:
-        cadastro.excluirProfessor();
+        cadastroprofessores.excluirProfessor();
         break;
       case 11:
-        cadastro.alterarProfessor();
+        cadastroprofessores.alterarProfessor();
         break;
       case 0:
         cout << "Encerrando o programa\n";
