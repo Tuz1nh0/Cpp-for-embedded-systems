@@ -7,6 +7,8 @@ using namespace std;
 string nome;
 int day, month, year;
 int matricula;
+/*bool isLogged = false;
+int loggedIndex = -1;*/
 
 bool CadastroProfessores::verificaMatricula(Professor prof[], int qtd, int matricula) {
   for(int i = 0; i < qtd; i++) {
@@ -167,3 +169,30 @@ void CadastroProfessores::alterarProfessor() {
     }  
   }
 }
+
+/*
+bool LoginLogout::verifyLogged() {
+    return isLogged;
+}
+
+int LoginLogout::getLoggedIndex() {
+    return loggedIndex;
+}
+
+bool LoginLogout::login(int matricula) {
+    for(int i = 0; i < qtdProfessores; i++) {
+        if(prof[i].getMatricula() == matricula) {
+            isLogged = true;
+            loggedIndex = i;
+            return true;
+        }
+    }
+
+    return false;
+}
+
+void LoginLogout::logout() {
+    isLogged = false;
+    loggedIndex = -1;
+}
+*/
