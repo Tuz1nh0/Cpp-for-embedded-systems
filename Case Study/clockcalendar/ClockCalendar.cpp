@@ -1,0 +1,12 @@
+#include "ClockCalendar.h"
+
+ClockCalendar::ClockCalendar(int d, int m, int y, int h, int min, int sec, int PM) : Clock(h, min, sec, PM), Calendar(d, m, y) {
+}
+
+void ClockCalendar::advance() {
+  int was_pm = is_pm;
+  Clock::advance();
+  if(was_pm && !is_pm) {
+    Calendar::advance();
+  }
+}
