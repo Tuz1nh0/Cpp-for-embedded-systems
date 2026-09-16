@@ -50,7 +50,7 @@ ClockCalendar cc(0, 0, 0, 0, 0, 0, 0);
                 cout << "Time: " << hour << ":" << minute << ":" << second << " " << (PM ? "PM" : "AM") << endl;
                 break;
             case 5:
-                /*int steps;
+                int steps;
                 cout << "How many steps? ";
                 cin >> steps;
                 for(int i = 0; i < steps; i++) {

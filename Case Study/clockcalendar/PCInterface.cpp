@@ -11,12 +11,15 @@ void PCInterface::display() {
 
     clkcal.readDate(d, m, y);
     clkcal.readTime(h, min, sec, pm);
-
-    cout << "Data: " << d << "/" << m << "/" << y << endl;
+    
+    cout << "\r";
     if(pm) {
-        cout << "Hora: " << h << ":" << min << ":" << sec << " PM" << endl;
+        cout << "Data: " << d << "/" << m << "/" << y << " "
+        << "Hora: " << h << ":" << min << ":" << sec << " PM";
     }
     else {
-        cout << "Hora: " << h << ":" << min << ":" << sec << " AM" << endl;
+        cout << "Data: " << d << "/" << m << "/" << y << " "
+        << "Hora: " << h << ":" << min << ":" << sec << " AM";
     }
+    cout.flush();
 }
