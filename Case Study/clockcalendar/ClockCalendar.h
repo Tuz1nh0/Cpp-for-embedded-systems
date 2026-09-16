@@ -11,6 +11,4 @@ class ClockCalendar : public Clock, public Calendar {
     void advance() override;
 };
 
-ClockCalendar cc;
-
 #endif
