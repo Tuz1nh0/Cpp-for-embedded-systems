@@ -4,17 +4,17 @@
 #include <iostream>
 #include "CadastroProfessores.h"
 
-class LoginLogout : protected CadastroProfessores{
+class LoginLogout{
     private:
         bool isLogged;
         int loggedIndex;
+        CadastroProfessores& cadastro;
     public:
+        LoginLogout(CadastroProfessores& cadastroProfessores); 
         bool verifyLogged();
         int getLoggedIndex();
         bool login(int matricula);
         void logout();
 };
-
-LoginLogout auth;
 
 #endif

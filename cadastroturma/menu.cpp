@@ -16,13 +16,13 @@ void Menu::showCadastroTurma(bool profLogged, bool verifyProf) {
   cout << "1 - Login\n";
   cout << "2 - Logout\n";
   cout << "3 - Cadastrar aluno\n";
-  cout << "4 - Consultar aluno \n";
-  cout << "5 - Listar alunos\n";
+  cout << "4 - Listar alunos\n";
+  cout << "5 - Consultar aluno \n";
   cout << "6 - Excluir aluno\n";
   cout << "7 - Alterar aluno\n";
   cout << "8 - Cadastrar profesor\n";
-  cout << "9 - Consultar professor\n";
-  cout << "10 - Listar professores\n";
+  cout << "9 - Listar professores\n";
+  cout << "10 - Consultar professor\n";
   cout << "11 - Excluir professor\n";
   cout << "12 - Alterar professor\n";
 }
