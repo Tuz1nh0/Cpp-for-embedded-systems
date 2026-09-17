@@ -1,9 +1,13 @@
 #include "UserInterface.h"
+#include <string>
 
-UserInterface::UserInterface(ClockCalendar& cc) : clkcal(cc) {
+using namespace std;
+
+UserInterface::UserInterface() {
 }
 
-void UserInterface::display() {
+void UserInterface::display(string clkcal) {
+    (void)clkcal;
 }
 
 UserInterface::~UserInterface() {

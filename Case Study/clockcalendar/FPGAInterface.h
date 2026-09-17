@@ -2,13 +2,12 @@
 #define FPGAINTERFACE_H
 
 #include "UserInterface.h"
+#include "OLED.h"
 
 class FPGAInterface : public UserInterface {
-    private:
-        //TBD
     public:
-        FPGAInterface(ClockCalendar& cc);
-        void display() override;
+        FPGAInterface();
+        void display(string clkcal) override;
 };
 
 #endif

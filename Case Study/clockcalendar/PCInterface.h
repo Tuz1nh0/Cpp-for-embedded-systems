@@ -5,8 +5,8 @@
 
 class PCInterface : public UserInterface {
     public:
-        PCInterface(ClockCalendar& cc);
-        void display() override;
+        PCInterface();
+        void display(string clkcal) override;
 };
 
 #endif

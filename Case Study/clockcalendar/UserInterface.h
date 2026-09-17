@@ -1,14 +1,16 @@
 #ifndef USERINTERFACE_H
 #define USERINTERFACE_H
 
-#include "ClockCalendar.h"
+#include <string>
+
+using namespace std;
 
 class UserInterface {
     protected:
-        ClockCalendar& clkcal;
+        string clkcal;
     public:
-        UserInterface(ClockCalendar& cc);
-        virtual void display();
+        UserInterface();
+        virtual void display(string clkcal);
         virtual ~UserInterface();
 };
 

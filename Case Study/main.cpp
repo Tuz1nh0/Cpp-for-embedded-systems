@@ -1,28 +1,32 @@
 #include <iostream>
-#include <thread>
-#include <chrono>
+#include <stdint.h>
+#include "clockcalendar/ClockCalendar.h"
+//#include "clockcalendar/FPGAInterface.h"
 #include "clockcalendar/PCInterface.h"
-#include "clockcalendar/FPGAInterface.h"
 
 using namespace std;
 
 int main() {
     ClockCalendar cc(0, 0, 0, 0, 0, 0, 0);
+    PCInterface pc;
+    //FPGAInterface oled;
 
-    UserInterface* ui = nullptr;
+    int opt = 0;
+    if (!(cin >> opt)) {
+        cerr << "Invalid option. Please enter 1 or 2." << endl;
+        return 1;
+    }
+    cin.ignore();
 
-    #ifdef PCINTERFACE_H
-        PCInterface pc(cc);
-        ui = &pc;
-    #else
-        FPGAInterface fpga(cc);
-        ui = &fpga;
-    #endif
-
-    while(true) {
-        ui->display();
+    while (true) {
         cc.advance();
-        //this_thread::sleep_for(chrono::seconds(1));
+        if (opt == 1) {
+            pc.display(cc.readDateSTR() + " " + cc.readTimeSTR());
+        } else if (opt == 2) {
+            break;
+            //oled.display(cc.readDateSTR());
+            //oled.display(cc.readTimeSTR());
+        }
     }
 
     return 0;

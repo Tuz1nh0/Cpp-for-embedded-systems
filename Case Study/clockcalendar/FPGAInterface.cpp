@@ -3,14 +3,16 @@
 
 using namespace std;
 
-FPGAInterface::FPGAInterface(ClockCalendar& cc) : UserInterface(cc){
+FPGAInterface::FPGAInterface(){
+    oledInit();
 }
 
-void FPGAInterface::display() {
-    int d, m, y, h, min, sec, pm;
+void FPGAInterface::display(string clkcal) {
+    char linha1[32];
     
-    clkcal.readDate(d, m, y);
-    clkcal.readTime(h, min, sec, pm);
-
-    //TBD
+    snprintf(linha1, sizeof(linha1), "%s", clkcal.c_str());
+    
+    oledClear();
+    setLine(0);
+    printString(linha1);
 }

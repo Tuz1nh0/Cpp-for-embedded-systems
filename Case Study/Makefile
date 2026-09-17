@@ -7,8 +7,8 @@ SRCS = main.cpp \
 	clockcalendar/Clock.cpp \
 	clockcalendar/ClockCalendar.cpp \
 	clockcalendar/PCInterface.cpp \
-	clockcalendar/FPGAInterface.cpp \
-	clockcalendar/Userinterface.cpp
+	clockcalendar/Userinterface.cpp \
+	clockcalendar/OLED.cpp
 
 all: $(TARGET)
 

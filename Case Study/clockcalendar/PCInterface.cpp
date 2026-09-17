@@ -3,23 +3,9 @@
 
 using namespace std;
 
-PCInterface::PCInterface(ClockCalendar& cc) : UserInterface(cc){
+PCInterface::PCInterface(){
 }
 
-void PCInterface::display() {
-    int d, m, y, h, min, sec, pm;
-
-    clkcal.readDate(d, m, y);
-    clkcal.readTime(h, min, sec, pm);
-    
-    cout << "\r";
-    if(pm) {
-        cout << "Data: " << d << "/" << m << "/" << y << " "
-        << "Hora: " << h << ":" << min << ":" << sec << " PM";
-    }
-    else {
-        cout << "Data: " << d << "/" << m << "/" << y << " "
-        << "Hora: " << h << ":" << min << ":" << sec << " AM";
-    }
-    cout.flush();
+void PCInterface::display(string clkcal) {
+    cout << "\r" << clkcal << flush;
 }
