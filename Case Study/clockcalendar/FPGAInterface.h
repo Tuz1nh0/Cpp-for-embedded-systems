@@ -2,7 +2,6 @@
 #define FPGAINTERFACE_H
 
 #include "UserInterface.h"
-#include "OLED.h"
 
 class FPGAInterface : public UserInterface {
     public:

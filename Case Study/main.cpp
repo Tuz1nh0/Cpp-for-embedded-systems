@@ -1,7 +1,7 @@
 #include <iostream>
 #include <stdint.h>
 #include "clockcalendar/ClockCalendar.h"
-//#include "clockcalendar/FPGAInterface.h"
+#include "clockcalendar/FPGAInterface.h"
 #include "clockcalendar/PCInterface.h"
 
 using namespace std;
@@ -9,7 +9,7 @@ using namespace std;
 int main() {
     ClockCalendar cc(0, 0, 0, 0, 0, 0, 0);
     PCInterface pc;
-    //FPGAInterface oled;
+    FPGAInterface oled;
 
     int opt = 0;
     if (!(cin >> opt)) {
@@ -24,8 +24,8 @@ int main() {
             pc.display(cc.readDateSTR() + " " + cc.readTimeSTR());
         } else if (opt == 2) {
             break;
-            //oled.display(cc.readDateSTR());
-            //oled.display(cc.readTimeSTR());
+            oled.display(cc.readDateSTR());
+            oled.display(cc.readTimeSTR());
         }
     }
 

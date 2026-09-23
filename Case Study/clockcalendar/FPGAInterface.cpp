@@ -1,5 +1,7 @@
 #include <iostream>
 #include "FPGAInterface.h"
+#include "OLED.h"
+#include "gptimer.h"
 
 using namespace std;
 
