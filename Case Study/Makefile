@@ -6,9 +6,11 @@ SRCS = main.cpp \
 	clockcalendar/Calendar.cpp \
 	clockcalendar/Clock.cpp \
 	clockcalendar/ClockCalendar.cpp \
-	clockcalendar/PCInterface.cpp \
 	clockcalendar/Userinterface.cpp \
-	clockcalendar/OLED.cpp
+	clockcalendar/FPGAInterface.cpp \
+	clockcalendar/OLED.cpp \
+	clockcalendar/gptimer.c \
+    clockcalendar/irqmp.c \
 
 all: $(TARGET)
 

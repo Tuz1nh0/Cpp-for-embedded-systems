@@ -13,7 +13,7 @@ class ClockCalendar : public Clock, public Calendar {
     ClockCalendar(int d, int m, int y, int h, int min, int sec, int PM);
     string readDateSTR();
     string readTimeSTR();
-    void advance() override;
+    void advance();
 };
 
 #endif

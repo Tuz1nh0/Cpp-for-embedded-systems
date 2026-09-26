@@ -6,7 +6,7 @@
 class FPGAInterface : public UserInterface {
     public:
         FPGAInterface();
-        void display(string clkcal) override;
+        void display(string clkcal);
 };
 
 #endif
